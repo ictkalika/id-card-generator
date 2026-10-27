@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073f5d">
+  <title>ICT Kalika ID Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell"><p class="eyebrow">ICT Kalika</p><h1>ID card generator</h1><p>Enter the member details, adjust the photo, and download a print-ready card.</p></div>
+  </header>
+  <main class="shell layout">
+    <section class="panel form-panel" aria-labelledby="details-title">
+      <div class="panel-heading"><span class="step">01</span><div><h2 id="details-title">Member details</h2><p>All fields are required.</p></div></div>
+      <form id="card-form" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="class">Class</label><select id="class" name="class" required aria-describedby="class-error"><option value="">Select class</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select><p class="error" id="class-error" aria-live="polite"></p></div>
+        </div>
+        <fieldset class="field section-field" aria-describedby="section-hint section-error"><legend>Division / Section</legend><p class="hint" id="section-hint">Choose one letter.</p><div class="section-grid" id="section-grid"></div><p class="error" id="section-error" aria-live="polite"></p></fieldset>
+        <div class="field"><label for="full-name">Full name</label><input id="full-name" name="full-name" type="text" autocomplete="name" required placeholder="Enter full name" aria-describedby="name-error"><p class="error" id="name-error" aria-live="polite"></p></div>
+        <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="text" inputmode="numeric" autocomplete="tel-national" required placeholder="10 digits" aria-describedby="phone-error"><p class="error" id="phone-error" aria-live="polite"></p></div>
+        <div class="field"><label for="photo">Photograph</label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required aria-describedby="photo-hint photo-error"><p class="hint" id="photo-hint">JPG, PNG, or WebP. Your photo stays on this device.</p><p class="error" id="photo-error" aria-live="polite"></p></div>
+        <div class="photo-controls" id="photo-controls" hidden><div class="photo-control-heading"><strong>Position photo</strong><span>Drag in preview or use controls</span></div><label for="zoom">Zoom <output id="zoom-value">100%</output></label><input id="zoom" type="range" min="100" max="300" value="100" step="1"><label for="photo-x">Move horizontally</label><input id="photo-x" type="range" min="-100" max="100" value="0" step="1"><label for="photo-y">Move vertically</label><input id="photo-y" type="range" min="-100" max="100" value="0" step="1"></div>
+      </form>
+    </section>
+    <aside class="side-column">
+      <section class="panel preview-panel" aria-labelledby="preview-title"><div class="panel-heading"><span class="step">02</span><div><h2 id="preview-title">Live preview</h2><p>The card updates as you enter details.</p></div></div><div class="preview-stage"><canvas id="card-canvas" width="1033" height="1757" aria-label="Live preview of ID card"></canvas></div><p class="preview-note">The preview is scaled to fit your screen. Downloads use the full template resolution.</p></section>
+      <section class="panel export-panel" aria-labelledby="export-title"><div class="panel-heading"><span class="step">03</span><div><h2 id="export-title">Download</h2><p>Complete the fields before exporting.</p></div></div><p class="export-error" id="export-error" role="alert" hidden></p><div class="download-grid"><button type="button" class="download primary" data-format="pdf">Download PDF</button><button type="button" class="download" data-format="jpg">Download JPG</button><button type="button" class="download" data-format="png">Download PNG</button></div><button type="button" class="reset" id="reset-button">Reset form</button></section>
+    </aside>
+  </main>
+  <footer class="shell footer">Generated locally in your browser. No details or photographs are uploaded.</footer>
+</body>
+</html>
